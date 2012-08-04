@@ -1,0 +1,32 @@
+Redirection of Standard output/input i.e. Input - Output redirection
+
+Mostly all command gives output on screen or take input from keyboard, but in Linux (and in other OSs also) it's possible to send output to file or to read input from file.
+
+For e.g.
+$ ls command gives output to screen; to send output to file of ls command give command
+
+$ ls > filename
+It means put output of ls command to filename.
+
+There are three main redirection symbols >,>>,<
+
+(1) > Redirector Symbol
+Syntax:
+Linux-command > filename
+To output Linux-commands result (output of command or shell script) to file. Note that if file already exist, it will be overwritten else new file is created. For e.g. To send output of ls command give
+$ ls > myfiles
+Now if 'myfiles' file exist in your current directory it will be overwritten without any type of warning.
+
+(2) >> Redirector Symbol
+Syntax:
+Linux-command >> filename
+To output Linux-commands result (output of command or shell script) to END of file. Note that if file exist , it will be opened and new information/data will be written to END of file, without losing previous information/data, And if file is not exist, then new file is created. For e.g. To send output of date command to already exist file give command
+$ date >> myfiles
+
+(3) < Redirector Symbol
+Syntax:
+Linux-command < filename
+To take input to Linux-command from file instead of key-board. For e.g. To take input for cat command give
+$ cat < myfiles
+
+
