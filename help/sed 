@@ -1,0 +1,21 @@
+Sed Command Example
+
+To replace all occurrences of word UNIX with Linux using the sed command, enter:
+
+ 
+sed 's/UNIX/Linux/g' < input.file > output.file
+ 
+OR
+
+ 
+sed -i 's/UNIX/Linux/g' input.file
+ 
+OR use bash shell for loop as follows to update all *.doc files at once:
+
+#!/bin/bash
+for f in /path/to/*.doc
+do
+   sed -i  's/UNIX/Linux/g' "$f"
+done
+ 
+Updated for accuracy!
