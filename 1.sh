@@ -15,4 +15,3 @@ case $no in
 	"12") echo "December";;
 	*) echo "Go join LKG!, there are only 12 months";;
 esac
-
