@@ -14,5 +14,5 @@ echo "Name your folder"
 read fold
 #folder exits 
 mkdir $fold
-cp -R `cat < listhid ` $fold/ 
+mv -R `cat < listhid ` $fold/ 
 exit 1
