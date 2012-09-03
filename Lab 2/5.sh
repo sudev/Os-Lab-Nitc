@@ -16,3 +16,4 @@ read fold
 mkdir $fold
 mv -R `cat < listhid ` $fold/ 
 exit 1
+#ahkjhakljl
