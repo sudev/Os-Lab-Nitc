@@ -32,19 +32,16 @@ int main(int argc,char * argv[])
   char buffer[128];
   
   while(lines>128)
-	{
-	
-	while(read(fd, buffer, 128)>0)
-	  {
-	  printf("%s", buffer);
-	  }
-	lines=lines - 128;
-	}
-	
-	if(read(fd, buffer, lines)>0)
-	{
-	write(1, buffer, lines);
-	}
-			
+  {
+  while(read(fd, buffer, 128)>0)
+  {
+  printf("%s", buffer);
+  }
+  lines=lines - 128;
+  }
+  if(read(fd, buffer, lines)>0)
+  {
+  write(1, buffer, lines);
+  }
   return 0;
 }

@@ -7,10 +7,11 @@
 #include <sys/types.h>
 #include <dirent.h>
 #include <string.h>
-#include <fctnl.h>
+//#include <fctnl.h>
 #include<cstdlib>
+#include <errno.h>
 
-void bublesort(char *[], int);
+void bubblesort(char *[], int);
 using namespace std;
 
 int main(int argc,char * argv[])
@@ -47,7 +48,7 @@ int main(int argc,char * argv[])
   struct dirent *entry;
   DIR *curdir;
   int count;
-  dir=opendir(".");
+ curdir=opendir(argv[1]);
   int i=0;
   while((entry=readdir(curdir)))
   {	
@@ -56,7 +57,7 @@ int main(int argc,char * argv[])
   buf[i]=entry->d_name;
   i++;
   }
-  bubbblesort(buf, count);
+  bubblesort(buf, count);
   for(count=0;count<i;count++)
   {
   write(fd[1], buf[count],128);
@@ -69,7 +70,7 @@ int main(int argc,char * argv[])
 
 
 //implement bubbble sort to sort the given list 
-void bubblesort(cahr *buf[], int i)
+void bubblesort(char *buf[], int i)
 {
   int j,k;
   char *t;

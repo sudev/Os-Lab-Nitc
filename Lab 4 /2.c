@@ -1,5 +1,4 @@
 #include <stdio.h>
-#include <fctnl.h>
 #include <sys/stat.h>
 #include <dirent.h>
 #include <errno.h>
@@ -15,7 +14,7 @@ int main(int arg,char * argv[])
     exit(1);
   }
   //using dirent we use DIR , funtions 
-  int ch=o,flg=0;
+  int ch=0,flg=0;
   printf("/n1.Question 2/n2.Question 3/n");
   if(ch ==1)
   {
@@ -23,17 +22,16 @@ int main(int arg,char * argv[])
   }
   
   DIR *curdir;
-  strucu dirent *entry;
+  struct dirent *entry;
   //fname and stat to store deatails of files 
   char *fname;
   fname = argv[1];
   struct stat fname;
-  
   //existence check -1 is error
   if((stat, &fname)==-1)
   {
     perror("stat");
-    exit(1)
+    exit(1);
   }
   //check for directory 
   if (!S_ISDIR(fileinfo.st_mode))
@@ -66,12 +64,12 @@ int main(int arg,char * argv[])
   }
   printf(" \t %s \n ", entry->d_name);
   }
-closedir(dir);
+closedir(curdir);
 return 0;
 }
 inline void printsiz(off_t siz)
 {
-  printf("%ld", (long) size); 
+  printf("%ld", (long) siz); 
 }
 //returns the size 
 void fsize(struct stat * fileinfo)
