@@ -1,0 +1,5 @@
+line 31 
+if clause 
+
+correct version is 
+if((stat(fstats, &fname))==-1)
