@@ -8,6 +8,7 @@ int array[10][10]={{},{}};
 //PCB for process 
 int ptime,noofprocess;
 int over();
+void readandsave();
 struct process
 {
 	int cpu[10];
@@ -17,6 +18,8 @@ struct process
 	int numcpu;
 	int numio;
 	int status[3];
+	int currentcpu;
+	int currentio;
 	//the status array is used to get the status of any process which 
 	//like working cpu 1st bit = 1 , io 2nd bit = 1; finished 3rd bit = 1  
 };
@@ -115,11 +118,11 @@ int main ()
 ptime =0;
 //select the process with least cpu burst 
 while(over())
-{	
-	
-
-
-}
+	{	
+	readyqueue();
+	//increment time 
+	ptime++;
+	}
 }
 
 //function to check completion of all the process 
@@ -128,3 +131,14 @@ int over()
 		
 		return 0;
 }
+int readyqueue()
+{
+	int * jobqueue[10];
+	for(int i=0;i<noofprocess;i++)
+	{
+	if(proc[i].numcpu < proc[i].cpu[currentcpu] )
+		proc[i].signal[1]=-1;
+	if(proc[i].arival < ptime && proc[i].signal[1] != -1)
+		{
+		jobqueue[i] = &proc[i].cpu[currentcpu];
+		}
