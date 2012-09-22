@@ -142,3 +142,5 @@ int readyqueue()
 		{
 		jobqueue[i] = &proc[i].cpu[currentcpu];
 		}
+	}
+}
