@@ -133,8 +133,10 @@ while(over())
 	//cout<<endl<<"process to be executed is "<<*tem;
 	//now to take record of all the happenings
 	/* trying to keep print the whole stuff */
-	cout << "the process executed at time\t " <<ptime<<"\twas\t"<<current+1<<endl;
-	/*if(ptime==0)
+	cout << "the process executed at time\t " <<ptime<<"\twas\t"<<current+1<<" its "<<proc[current].currentcpu + 1<<" cpu burst  was executed"<<endl;
+	//to get all the stuff into an array 
+	/* 
+	if(ptime==0)
 	{ 
 		printarray[pp] = current;
 		printarray[pp+1] = 1;
@@ -153,13 +155,18 @@ while(over())
 			printarray[pp] = 1;
 			}
 	}
-	for(int i; i < pp+1;i=i+2)
-		cout<<printarray[i]<<" : "<<printarray[i+1]<<"\t";
 	*/
+	
 	(*tem)--;
 	ptime++;
-	
+	/* in case of other process 
+	 * the change is just the ptime = ptime + *tem
+	 * and temp = 0'
+	 */
+	//iowait--;
 	}
+	for(int i; i < pp+1;i=i+2)
+		cout<<printarray[i]<<" : "<<printarray[i+1]<<"\t";
 }
 
 
