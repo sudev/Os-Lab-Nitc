@@ -34,49 +34,50 @@ struct process *proc = new struct process[10];
 
 void readandsave(){
 
-string line;
-int count,i,nop=0,just,nopt;
-ifstream myfile0 ("test");
-while (!myfile0.eof())
+int count,i;
+int nop=0,just,nopt;
+string procline;
+ifstream test0 ("inputfile");
+while (!test0.eof())
     {
-		getline (myfile0,line);
+		getline (test0,procline);
 		nop++;
 	}
 nop--;
 nopt=nop;
 noofprocess=nop;
 cout<<"Total no fo process  "<<nop<<endl;
-int countarray[nop];
-ifstream myfile ("test");
+int stuffinprocess[nop];
+ifstream test ("inputfile");
 int cou=0;
 while (nop)
     {
-	getline (myfile,line);
+	getline (test,procline);
 	count=i=0;
-	while(line[i]!='\0')
+	while(procline[i]!='\0')
 		{
-			if(line[i]==' ')
+			if(procline[i]==' ')
 			count++;
 			i++;
 
 		}
-	countarray[cou]=count+1;
+	stuffinprocess[cou]=count+1;
 	nop--;
 	cou++; 
     }
-ifstream myfile2 ("test");
+ifstream test2 ("inputfile");
 for(int x=0;x<nopt;x++)
 	{
-	for(int z=0;z<countarray[x];z++ )
+	for(int z=0;z<stuffinprocess[x];z++ )
 		{ 
-		myfile2>>just;
+		test2>>just;
 		array[x][z]=just;
 		}
 	}
 for(int a=0;a<nopt;a++)
 	{
 	int t=1;
-	for(int b=0;b<countarray[a];b++ )
+	for(int b=0;b<stuffinprocess[a];b++ )
 		{ 
 		cout<<array[a][b]<<" ";\
 		//taking values into arival array 
@@ -124,7 +125,11 @@ int main ()
 	//manipulate the data using suitable methods 
 //time 
 //print point 
-int pp=0;
+int pp=0,ch=1;
+while(ch)
+{
+cout<<"Enter your choice "<<"1.Pre emptive \t 2.emptive "<<endl;
+cin>>ch;
 
 //select the process with least cpu burst 
 while(over())
@@ -135,7 +140,7 @@ while(over())
 	/* trying to keep print the whole stuff */
 	cout << "the process executed at time\t " <<ptime<<"\twas\t"<<current+1<<" its "<<proc[current].currentcpu + 1<<" cpu burst  was executed"<<endl;
 	//to get all the stuff into an array 
-	/* 
+	/*
 	if(ptime==0)
 	{ 
 		printarray[pp] = current;
@@ -156,9 +161,26 @@ while(over())
 			}
 	}
 	*/
-	
+	if(ch<2)
+	{
 	(*tem)--;
 	ptime++;
+	if(iowait > 0 )
+	iowait--;
+	}
+	else
+	{
+		ptime = ptime + *tem;
+		
+		if(iowait > 0)
+		{
+		if( iowait > *tem ) 
+			iowait = iowait - *tem;
+		else
+			iowait = 0;
+		}
+		*tem = 0;
+	}
 	/* in case of other process 
 	 * the change is just the ptime = ptime + *tem
 	 * and temp = 0'
@@ -167,6 +189,8 @@ while(over())
 	}
 	for(int i; i < pp+1;i=i+2)
 		cout<<printarray[i]<<" : "<<printarray[i+1]<<"\t";
+	return 1;
+}
 }
 
 
@@ -176,7 +200,7 @@ int over()
 {
 	for(int i =0 ; i < noofprocess; i++)
 	{
-		if(proc[i].signal[1] != -1)
+		if(proc[i].numcpu >proc[i].currentcpu)
 		{
 		return 1;
 		}
